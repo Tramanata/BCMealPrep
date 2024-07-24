@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { View, FlatList, StyleSheet, Image, Dimensions, TouchableOpacity, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import FoodCell from './FoodCell';
 import foodsData from './assets/foods.json'; // Import the JSON file directly
+import MealDetail from './MealDetail'; // Import the new MealDetail screen
 
-const App = () => {
+const Stack = createNativeStackNavigator();
+
+const HomeScreen = ({ navigation }) => {
   const [foods, setFoods] = useState([]);
   const [menuVisible, setMenuVisible] = useState(false);
 
@@ -23,7 +28,7 @@ const App = () => {
       description={item.description}
       price={item.price}
       image={item.image} // Pass image name to FoodCell
-      onPress={() => alert(`${item.name} pressed`)}
+      onPress={() => navigation.navigate('MealDetail', { meal: item })}
     />
   );
 
@@ -44,6 +49,17 @@ const App = () => {
         numColumns={1} // One cell per row
       />
     </View>
+  );
+};
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="MealDetail" component={MealDetail} options={{ title: 'Meal Details' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
