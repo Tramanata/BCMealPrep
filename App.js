@@ -5,6 +5,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import FoodCell from './FoodCell';
 import foodsData from './assets/foods.json'; // Import the JSON file directly
 import MealDetail from './MealDetail'; // Import the new MealDetail screen
+import MenuModal from './MenuModal'; // Import the new MenuModal component
+import AboutTheChef from './AboutTheChef'; // Import the new AboutTheChef screen
+import ContactMe from './ContactMe'; // Import the new ContactMe screen
+import Schedule from './Schedule'; // Import the new ContactMe screen
 
 const Stack = createNativeStackNavigator();
 
@@ -18,8 +22,7 @@ const HomeScreen = ({ navigation }) => {
   }, []);
 
   const toggleMenu = () => {
-    // Simply alert on button press without animation
-    alert('Menu button pressed');
+    setMenuVisible(!menuVisible);
   };
 
   const renderItem = ({ item }) => (
@@ -48,6 +51,7 @@ const HomeScreen = ({ navigation }) => {
         keyExtractor={(item) => item.id}
         numColumns={1} // One cell per row
       />
+      <MenuModal visible={menuVisible} onClose={() => setMenuVisible(false)} navigation={navigation} />
     </View>
   );
 };
@@ -56,8 +60,82 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="MealDetail" component={MealDetail} options={{ title: 'Meal Details' }} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            headerShown: false,
+            title: 'Home',
+            headerStyle: {
+              backgroundColor: '#000a1a', // Dark navy color
+            },
+            headerTintColor: '#ffffff', // White text color
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              fontFamily: 'Futura',
+            },
+          }}
+        />
+        <Stack.Screen
+          name="MealDetail"
+          component={MealDetail}
+          options={{
+            title: 'Meal Details',
+            headerStyle: {
+              backgroundColor: '#000a1a', // Dark navy color
+            },
+            headerTintColor: '#ffffff', // White text color
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              fontFamily: 'Futura',
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Schedule"
+          component={Schedule}
+          options={{
+            title: 'Schedule',
+            headerStyle: {
+              backgroundColor: '#000a1a', // Dark navy color
+            },
+            headerTintColor: '#ffffff', // White text color
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              fontFamily: 'Futura',
+            },
+          }}
+        />
+        <Stack.Screen
+          name="AboutTheChef"
+          component={AboutTheChef}
+          options={{
+            title: 'About the Chef',
+            headerStyle: {
+              backgroundColor: '#000a1a', // Dark navy color
+            },
+            headerTintColor: '#ffffff', // White text color
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              fontFamily: 'Futura',
+            },
+          }}
+        />
+        <Stack.Screen
+          name="ContactMe"
+          component={ContactMe}
+          options={{
+            title: 'Contact Us',
+            headerStyle: {
+              backgroundColor: '#000a1a', // Dark navy color
+            },
+            headerTintColor: '#ffffff', // White text color
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              fontFamily: 'Futura',
+            },
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -66,7 +144,7 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E9CDAB', // Dark gray background
+    backgroundColor: '#E9CDAB', // Background color
   },
   navySpace: {
     height: 50, // Height of the top bar
@@ -88,7 +166,7 @@ const styles = StyleSheet.create({
     padding: 10,
     position: 'absolute', // Absolute positioning within the container
     top: 40, // Distance from the top of the container
-    left: 300, // Distance from the left edge of the container
+    right: 20, // Distance from the right edge of the container
     zIndex: 2, // Ensure button is on top of other elements
   },
   menuButtonText: {

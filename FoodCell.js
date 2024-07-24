@@ -22,7 +22,7 @@ const FoodCell = ({ name, description, price, image, onPress }) => {
       <View style={styles.cellContent}>
         {imageSource && <Image source={imageSource} style={styles.image} />}
         <Text style={styles.name}>{name}</Text>
-        <Text style={styles.price}>{price}</Text>
+        <Text style={styles.price}>{'$'+price}</Text>
         <Text style={styles.description}>{description}</Text>
       </View>
     </TouchableOpacity>
