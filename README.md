@@ -19,3 +19,4 @@ BC Meal Prep is a mobile application designed to offer a seamless and intuitive 
 - **JavaScript**: Primary language used for writing the application logic.
 - **React Navigation**: Handles navigation between different screens within the app.
 - **GitHub**: Used for version control and collaboration.
+![image_123650291 (2)](https://github.com/user-attachments/assets/caece457-5b59-4819-a151-c03ca0d55f8d)
